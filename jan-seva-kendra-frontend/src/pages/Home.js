@@ -47,7 +47,7 @@ function Home() {
 
     return (
         <main className="bg-gray-100">
-            <div className="container mx-auto p-10">
+            <div className="container mx-auto p-6">
                 {/* Two Sections */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Section 1: Customer Search */}
