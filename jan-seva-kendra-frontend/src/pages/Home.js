@@ -57,9 +57,7 @@ function Home() {
                             <p className="mb-6 text-lg">
                                 Your one-stop solution for government services, utility payments, and more.
                             </p>
-                            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                                <Link to="/services">Explore Services</Link>
-                            </button>
+                            <Link to="/services"><button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Explore Services</button></Link>
                         </div>
                     </section>
 

@@ -18,7 +18,7 @@ function Contact() {
                 Contact Information
               </h2>
               <p>
-                <strong>Shop Name:</strong> Jan Seva Kendra
+                <strong>Shop Name:</strong> Dezire Online Works
               </p>
               <p>
                 <strong>Owner Name:</strong> Tarun Kumar
@@ -42,18 +42,18 @@ function Contact() {
               <form className="space-y-4">
                 <div>
                   <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
-                    Your Name
+                    Your Name:
                   </label>
                   <input
                     type="text"
                     id="name"
                     className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-600 outline-none"
-                    placeholder="Enter your name"
+                    placeholder="Enter your Full Name"
                   />
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
-                    Your Email
+                    Your Email:
                   </label>
                   <input
                     type="email"
@@ -64,7 +64,7 @@ function Contact() {
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2" htmlFor="message">
-                    Your Message
+                    Your Message:
                   </label>
                   <textarea
                     id="message"
