@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
@@ -39,16 +38,16 @@ function Footer() {
                     <div>
                         <h2 className="text-xl font-semibold mb-4">Follow Us</h2>
                         <div className="flex space-x-4">
-                            <a href="#" target="blank" className="text-blue-200 hover:text-white">
+                            <a href="https://www.linkedin.com/in/tarun-%E2%80%8E-9891a9265/" target="blank" className="text-blue-200 hover:text-white">
                                 <FontAwesomeIcon icon={faFacebookF} size="lg" />
                             </a>
-                            <a href="#" target="blank" className="text-blue-200 hover:text-white">
+                            <a href="https://www.linkedin.com/in/tarun-%E2%80%8E-9891a9265/" target="blank" className="text-blue-200 hover:text-white">
                                 <FontAwesomeIcon icon={faTwitter} size="lg" />
                             </a>
-                            <a href="#" target="blank" className="text-blue-200 hover:text-white">
+                            <a href="https://www.linkedin.com/in/tarun-%E2%80%8E-9891a9265/" target="blank" className="text-blue-200 hover:text-white">
                                 <FontAwesomeIcon icon={faInstagram} size="lg" />
                             </a>
-                            <a href="#" target="blank" className="text-blue-200 hover:text-white">
+                            <a href="https://www.linkedin.com/in/tarun-%E2%80%8E-9891a9265/" target="blank" className="text-blue-200 hover:text-white">
                                 <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
                             </a>
                         </div>
