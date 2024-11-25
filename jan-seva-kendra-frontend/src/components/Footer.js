@@ -15,7 +15,7 @@ function Footer() {
                         <p>Developer Tarun</p>
 
                         <p>
-                            <a href="tel:+9188630739687" className="text-blue-200 hover:underline">
+                            <a href="tel:+918630739687" className="text-blue-200 hover:underline">
                                 +91 8630739687
                             </a>
                         </p>
