@@ -39,7 +39,7 @@ app.post("/api/submit-form", upload.array("documents"), async (req, res) => {
         // Email details
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: "td739687@gmail.com", // Replace with your email
+            to: "tarunbusinessmail@gmail.com", // Replace with your email
             subject: "New Form Submission with Documents",
             text: `You have received a new submission:
 Name: ${name}
