@@ -9,6 +9,7 @@ require("dotenv").config();
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 5000;
+console.log("Email User:", process.env.EMAIL_USER);
 
 // Middleware
 app.use(cors());
