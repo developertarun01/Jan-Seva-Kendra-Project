@@ -71,6 +71,8 @@ function Home() {
 - Selected Service: ${formData.services}
 Please check your Email for the uploaded documents.`;
 
+            console.log("Email User:", process.env.EMAIL_USER);
+
             // WhatsApp URL
             const whatsappURL = `https://wa.me/918630739687?text=${encodeURIComponent(message)}`;
 
