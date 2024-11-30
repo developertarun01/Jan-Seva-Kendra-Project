@@ -24,36 +24,10 @@ app.post("/api/submit-form", upload.array("documents"), async (req, res) => {
     const { name, mobile, email, services } = req.body;
     const files = req.files;
 
-    console.log("Form Data:", { name, mobile, email, services });
-    console.log("Uploaded Files:", files);
-
-    if (!name || !mobile || !services) {
-        console.error("Validation Error: Missing required fields.");
-        return res.status(400).send({ error: "Name, mobile, and services are required." });
-    }
-
-    if (!files || files.length === 0) {
-        console.error("Validation Error: No files uploaded.");
-        return res.status(400).send({ error: "At least one document must be uploaded." });
-    }
+    console.log("Files received:", files);
+    console.log("Request body:", req.body);
 
     try {
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: "tarunbusinessmail@gmail.com", // Replace with valid email
-            subject: "New Form Submission with Documents",
-            text: `You have received a new submission:
-Name: ${name}
-Mobile: ${mobile}
-Email: ${email || "Not Provided"}
-Service: ${services}
-Attached documents are included.`,
-            attachments: files.map((file) => ({
-                filename: file.originalname,
-                path: file.path,
-            })),
-        };
-
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -62,16 +36,28 @@ Attached documents are included.`,
             },
         });
 
-        await transporter.sendMail(mailOptions);
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: "tarunbusinessmail.com", // Replace with your email
+            subject: "New Form Submission with Documents",
+            text: `You have received a new submission:
+Name: ${name}
+Mobile: ${mobile}
+Email: ${email}
+Service: ${services}
+Attached documents are included.`,
+            attachments: files.map((file) => ({
+                filename: file.originalname,
+                path: file.path,
+            })),
+        };
 
+        await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully!");
         res.status(200).send({ message: "Form submitted successfully!" });
     } catch (error) {
-        console.error("Error while sending email:", error);
-        res.status(500).send({
-            error: "Internal Server Error",
-            message: error.message,
-            stack: error.stack,
-        });
+        console.error("Error occurred while sending email:", error);
+        res.status(500).send({ error: "Internal Server Error", details: error.message });
     }
 });
 

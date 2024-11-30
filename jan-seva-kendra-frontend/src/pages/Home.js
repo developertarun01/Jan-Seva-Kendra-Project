@@ -56,7 +56,10 @@ function Home() {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/submit-form", {
+            console.log("Submitting form data to API...");
+    console.log("Form Data:", formData);
+
+            const response = await fetch("https://jan-seva-kendra-project-api.vercel.app/api/submit-form", {
                 method: "POST",
                 body: data,
             });
@@ -67,6 +70,7 @@ function Home() {
                 alert(`Error: ${errorData.message || "Failed to submit the form"}`);
                 return;
             }
+            console.log("Form submitted successfully, preparing WhatsApp message...");
 
             // Format the WhatsApp message
             const message = `Hello, A Form has been submitted:
