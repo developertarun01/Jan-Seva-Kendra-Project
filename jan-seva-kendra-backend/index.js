@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: 'https://jan-seva-kendra-project.vercel.app' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // API to handle form submissions
-app.post("/", upload.array("documents"), async (req, res) => {
+app.post("/api/submit-form", upload.array("documents"), async (req, res) => {
     const { name, mobile, email, services } = req.body;
     const files = req.files; // Ensure that files are accessible
 
