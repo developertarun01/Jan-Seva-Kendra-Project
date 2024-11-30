@@ -56,12 +56,17 @@ function Home() {
         }
 
         try {
-            const response = await fetch("https://jan-seva-kendra-project-api.vercel.app/api/submit-form", {
+            const response = await fetch("http://localhost:5000/api/submit-form", {
                 method: "POST",
                 body: data,
             });
 
-            if (!response.ok) throw new Error("Failed to submit the form");
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Error Response from Server:", errorData);
+                alert(`Error: ${errorData.message || "Failed to submit the form"}`);
+                return;
+            }
 
             // Format the WhatsApp message
             const message = `Hello, A Form has been submitted:
@@ -70,8 +75,6 @@ function Home() {
 - Email: ${formData.email || "Not Provided"}
 - Selected Service: ${formData.services}
 Please check your Email for the uploaded documents.`;
-
-            console.log("Email User:", process.env.EMAIL_USER);
 
             // WhatsApp URL
             const whatsappURL = `https://wa.me/918630739687?text=${encodeURIComponent(message)}`;
@@ -94,6 +97,7 @@ Please check your Email for the uploaded documents.`;
             alert("Form submitted successfully!");
         } catch (err) {
             console.error("Error submitting form:", err.message);
+            alert("An error occurred. Please try again.");
         }
     };
 
