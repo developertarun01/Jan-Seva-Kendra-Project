@@ -56,7 +56,7 @@ function Home() {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/submit-form", {
+            const response = await fetch("https://jan-seva-kendra-project-api.vercel.app/api/submit-form", {
                 method: "POST",
                 body: data,
             });
