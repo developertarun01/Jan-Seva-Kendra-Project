@@ -16,7 +16,7 @@ function Footer() {
 
                         <p>
                             <a href="tel:+918630739687" className="text-blue-200 hover:underline">
-                                +91 8630739687
+                                +91 86307 39687
                             </a>
                         </p>
                         <p>
@@ -67,7 +67,7 @@ function Footer() {
                         <p>Opp. ESI Hospital, New Sharda Nagar, Saharanpur, Uttar Pradesh, India 247001</p>
                         <p>
                             <a href="tel:+918218171118" className="text-blue-200 hover:underline">
-                                +91 8218171118
+                                +91 82181 71118
                             </a>
                         </p>
                         <p>

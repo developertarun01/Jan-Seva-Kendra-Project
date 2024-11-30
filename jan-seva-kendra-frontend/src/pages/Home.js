@@ -33,16 +33,66 @@ function Home() {
     const handleFileChange = (e) => {
         setFormData((prevData) => ({
             ...prevData,
-            documents: e.target.files,
+            documents: e.target.files, // Ensure this contains FileList
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
 
-        // Send form data via email or backend API integration
-        alert("Form submitted successfully!");
+        const data = new FormData();
+        data.append("name", formData.name);
+        data.append("mobile", formData.mobile);
+        data.append("email", formData.email);
+        data.append("services", formData.services);
+
+        // Check and append files
+        if (formData.documents && formData.documents.length > 0) {
+            for (let i = 0; i < formData.documents.length; i++) {
+                data.append("documents", formData.documents[i]);
+            }
+        } else {
+            console.error("No documents selected.");
+        }
+
+        try {
+            const response = await fetch("http://localhost:5000/api/submit-form", {
+                method: "POST",
+                body: data,
+            });
+
+            if (!response.ok) throw new Error("Failed to submit the form");
+
+            // Format the WhatsApp message
+            const message = `Hello, A Form has been submitted:
+- Name: ${formData.name}
+- Mobile: ${formData.mobile}
+- Email: ${formData.email || "Not Provided"}
+- Selected Service: ${formData.services}
+Please check your Email for the uploaded documents.`;
+
+            // WhatsApp URL
+            const whatsappURL = `https://wa.me/918630739687?text=${encodeURIComponent(message)}`;
+
+            // Redirect to WhatsApp
+            window.open(whatsappURL, "_blank");
+
+            // Reset the form after successful submission
+            setFormData({
+                name: "",
+                mobile: "",
+                email: "",
+                services: "",
+                documents: null,
+            });
+
+            // Clear the file input field
+            document.getElementById("documents").value = "";
+
+            alert("Form submitted successfully!");
+        } catch (err) {
+            console.error("Error submitting form:", err.message);
+        }
     };
 
     return (
@@ -57,7 +107,11 @@ function Home() {
                             <p className="mb-6 text-lg">
                                 Your one-stop solution for government services, utility payments, and more.
                             </p>
-                            <Link to="/services"><button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Explore Services</button></Link>
+                            <Link to="/services">
+                                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                                    Explore Services
+                                </button>
+                            </Link>
                         </div>
                     </section>
 
@@ -156,7 +210,6 @@ function Home() {
                                 type="file"
                                 id="documents"
                                 name="documents"
-                                placeholder="E.g., Aadhar Card, Pan Card"
                                 multiple
                                 onChange={handleFileChange}
                                 className="w-full px-3 py-2 border rounded-lg"
@@ -171,8 +224,8 @@ function Home() {
                         </button>
                     </form>
                 </div>
-            </div >
-        </main >
+            </div>
+        </main>
     );
 }
 
