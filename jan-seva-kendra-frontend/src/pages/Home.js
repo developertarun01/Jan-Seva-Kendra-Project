@@ -56,7 +56,7 @@ function Home() {
         }
 
         try {
-            const response = await fetch("https://jan-seva-kendra-project-api.vercel.app/", {
+            const response = await fetch("https://jan-seva-kendra-project-api.vercel.app/ ", {
                 method: "POST",
                 body: data,
             });
