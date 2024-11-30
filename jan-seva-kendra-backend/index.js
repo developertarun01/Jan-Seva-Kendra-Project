@@ -24,8 +24,8 @@ app.post("/api/submit-form", upload.array("documents"), async (req, res) => {
     const { name, mobile, email, services } = req.body;
     const files = req.files;
 
-    console.log("Files received:", files);
-    console.log("Request body:", req.body);
+    console.log("Backend: Received form data:", { name, mobile, email, services });
+    console.log("Backend: Files received:", files);
 
     try {
         const transporter = nodemailer.createTransport({
@@ -36,9 +36,11 @@ app.post("/api/submit-form", upload.array("documents"), async (req, res) => {
             },
         });
 
+        console.log("Backend: Transporter created successfully.");
+
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: "tarunbusinessmail.com", // Replace with your email
+            to: "tarunbusinessmail@gmail.com", // Replace with your email
             subject: "New Form Submission with Documents",
             text: `You have received a new submission:
 Name: ${name}
@@ -52,11 +54,14 @@ Attached documents are included.`,
             })),
         };
 
+        console.log("Backend: Mail options prepared:", mailOptions);
+
         await transporter.sendMail(mailOptions);
-        console.log("Email sent successfully!");
+
+        console.log("Backend: Email sent successfully!");
         res.status(200).send({ message: "Form submitted successfully!" });
     } catch (error) {
-        console.error("Error occurred while sending email:", error);
+        console.error("Backend: Error occurred while sending email:", error);
         res.status(500).send({ error: "Internal Server Error", details: error.message });
     }
 });
